@@ -8,11 +8,11 @@ RM = rm -rf
 
 #ДЕБАГ ВЕРСИЯ
 ifeq ($(mode), release)
-	CCFLAGS += -g0
+	CCFLAGS += -g0 -DNDEBUG
 endif
 
 ifeq ($(mode), debug)
-	CCFLAGS += -g3 -DNDEBUG
+	CCFLAGS += -g3
 endif
 
 # СБОРКА ПРОЕКТА
