@@ -20,7 +20,7 @@ public:
     void setIOStream(BaseIOStream *ios);
     void setAlgorithm(BaseAlgorithm *alg);
 
-    std::vector<Cluster> startAlgorithm(int countCluster);
+    std::vector<TwoObject<int, Cluster> > startAlgorithm(int countCluster);
 };
 
 #endif // MANAGERCLUSTER_H

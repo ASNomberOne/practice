@@ -18,7 +18,7 @@ public:
     ~EuclidianMetric() { }
 
     double getDistance(Descriptor &desc1, Descriptor &desc2);
-    Descriptor getCentroid(std::vector<FeaturePoint> &vecFeaturePoint);
+    Descriptor getCentroid(std::vector<FeaturePoint> &vecFeaturePoint, std::vector<int> &vecIdList);
 };
 
 #endif // EUCLIDIANMETRIC_H

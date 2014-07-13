@@ -6,17 +6,24 @@
 #include "baseiostream.h"
 #include "fileiostream.h"
 #include "euclidianmetric.h"
-#include <string>
-#include <fstream>
+#include "managercluster.h"
+#include "kmeans.h"
+#include "twoobject.h"
 
 int main()
 {
     try
     {
         FileIOStream in("input");
-        std::vector<FeaturePoint> buf = in.getFeaturePoints();
         EuclidianMetric metric;
-        std::cout << metric.getDistance(buf[0].descriptor(), buf[1].descriptor()) <<  std::endl;
+        KMeans kmeans(&metric);
+        ManagerCluster managerCluster(&kmeans, &in);
+        std::vector<TwoObject<int, Cluster> > m_result = managerCluster.startAlgorithm(1);
+
+        int size = m_result.size();
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < m_result[i].getObject2().descriptor().size(); j++)
+                std::cout << m_result[i].getObject2().descriptor()[j] << std::endl;
     }
     catch (std::exception &e)
     {
@@ -24,8 +31,5 @@ int main()
         return 1;
     }
 
-    //std::ifstream file("input");
-
     return 0;
 }
-

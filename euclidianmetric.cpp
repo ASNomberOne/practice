@@ -12,20 +12,20 @@ double EuclidianMetric::getDistance(Descriptor &desc1, Descriptor &desc2)
     return std::sqrt(distance);
 }
 
-Descriptor EuclidianMetric::getCentroid(std::vector<FeaturePoint> &vecFeaturePoint)
+Descriptor EuclidianMetric::getCentroid(std::vector<FeaturePoint> &vecFeaturePoint, std::vector<int> &vecIdList)
 {
-    if (vecFeaturePoint.empty())
+    if (vecIdList.empty())
         throw std::runtime_error("Error: cluster is empty!");
 
     int sizeDesc = vecFeaturePoint[0].descriptor().size();
     Descriptor bufValue(sizeDesc);
-    int countRec = vecFeaturePoint.size();
+    int countRec = vecIdList.size();
 
     for (int i = 0; i < sizeDesc; i++)
     {
         double result = 0;
         for (int j = 0; j < countRec; j++)
-            result += vecFeaturePoint[j].descriptor()[i];
+            result += vecFeaturePoint[vecIdList[j]].descriptor()[i];
         bufValue[i] = result / countRec;
     }
 

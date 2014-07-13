@@ -35,16 +35,8 @@ std::vector<TwoObject<int, Cluster> > ManagerCluster::startAlgorithm(int countCl
 
     std::vector<TwoObject<int, Cluster> > vecResult;
 
-    //try
-    //{
-        std::vector<FeaturePoint> vecPoints = m_stream->getFeaturePoints();
-        vecResult = m_algorithm->findCluster(vecPoints, countCluster);
-    //}
-    /*catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-        throw;
-    }*/
-
+    std::vector<FeaturePoint> vecPoints = m_stream->getFeaturePoints();
+    vecResult = m_algorithm->findCluster(vecPoints, countCluster);
+    
     return vecResult;
 }
